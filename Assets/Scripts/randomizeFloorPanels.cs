@@ -3,6 +3,8 @@ using System.Collections;
 
 public class randomizeFloorPanels : MonoBehaviour {
 
+
+
 	// Use this for initialization
 	void Start () {
         gameObject.GetComponent<Renderer>().material.color = GetRandomMaterial().color;
