@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\fenceCounter.cs" />
      <Compile Include="Assets\Scripts\mainMenuScript.cs" />
      <Compile Include="Assets\Scripts\moveCharacter.cs" />
+     <Compile Include="Assets\Scripts\pauseManager.cs" />
      <Compile Include="Assets\Scripts\randomizeFloorPanels.cs" />
      <Compile Include="Assets\Scripts\randomizeObstacles.cs" />
  <Reference Include="UnityEngine.Networking">

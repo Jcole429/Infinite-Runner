@@ -4,7 +4,7 @@ using System.Collections;
 public class fenceCounter : MonoBehaviour {
 
 
-	public int numOfFences;
+	public int numOfFences = 3;
 	GameObject[] fences;
 
 	// Use this for initialization

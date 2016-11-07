@@ -22,4 +22,10 @@ public class mainMenuScript : MonoBehaviour {
 	public void QuitButtonClick(){
 		Application.Quit ();
 	}
+	public void ResumeButtonClick(){
+		Time.timeScale = 1;
+	}
+	public void LoadLevel(string levelName){
+		SceneManager.LoadScene (levelName);
+	}
 }

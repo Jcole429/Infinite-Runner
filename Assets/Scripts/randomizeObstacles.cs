@@ -4,19 +4,31 @@ using System.Collections;
 public class randomizeObstacles : MonoBehaviour {
 
 	GameObject fenceCounter;
-	int numOfFences;
+	public int numOfFences;
+
+	GameObject obstacle;
 
 	int numOfObstacles = 4;
+	bool objectPlaced = false;
+	float timeTilDestroy = 11f;
 
 	// Use this for initialization
 	void Start () {
 		fenceCounter = GameObject.Find ("FenceCounter");
-		Instantiate(GetRandomObstacle(), gameObject.transform.position, gameObject.transform.rotation);
+		obstacle = (GameObject)Instantiate(GetRandomObstacle(), gameObject.transform.position, gameObject.transform.rotation);
+		objectPlaced = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		numOfFences = fenceCounter.GetComponent<fenceCounter> ().numOfFences;
+
+		if (objectPlaced) {
+			timeTilDestroy -= Time.deltaTime;
+			if (timeTilDestroy < 0) {
+				Destroy (obstacle);
+			}
+		}
 	}
 	public GameObject GetRandomObstacle()
 	{
