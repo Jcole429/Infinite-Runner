@@ -11,11 +11,19 @@ public class randomizeObstacles : MonoBehaviour {
 	int numOfObstacles = 4;
 	bool objectPlaced = false;
 	float timeTilDestroy = 11f;
+	float delayCounter;
 
 	// Use this for initialization
 	void Start () {
 		fenceCounter = GameObject.Find ("FenceCounter");
+
+		delayCounter = (Random.value + Random.value)/2;
+		while (delayCounter >= 0) {
+			delayCounter -= Time.deltaTime;
+		}
+
 		obstacle = (GameObject)Instantiate(GetRandomObstacle(), gameObject.transform.position, gameObject.transform.rotation);
+		obstacle.transform.parent = gameObject.transform.parent.parent.parent;
 		objectPlaced = true;
 	}
 	
@@ -32,7 +40,7 @@ public class randomizeObstacles : MonoBehaviour {
 	}
 	public GameObject GetRandomObstacle()
 	{
-		int x = Random.Range(0, numOfObstacles+1);
+		int x = Random.Range(0, numOfObstacles);
 		if (x == 0)
 			return Resources.Load ("Obstacles/Bonfire") as GameObject;
 		else if (x == 1) {

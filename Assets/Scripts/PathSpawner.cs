@@ -29,13 +29,15 @@ public class PathSpawner : MonoBehaviour {
     void OnTriggerEnter(Collider hit) {
         if (hit.gameObject.tag == "Player")
         {   
-            int randomSpawnLocation = Random.Range(0, pathSpawnLocations.Length -1);
-			for (int x = 0; x < pathSpawnLocations.Length; x++) {
-				if (x == randomSpawnLocation) {
-					newPath = (GameObject)Instantiate (pathPrefab, pathSpawnLocations [x].position, pathSpawnLocations [x].rotation);
-					pathPlaced = true;
-				}
-			}
+//            int randomSpawnLocation = Random.Range(0, pathSpawnLocations.Length -1);
+//			for (int x = 0; x < pathSpawnLocations.Length; x++) {
+//				if (x == randomSpawnLocation) {
+//					newPath = (GameObject)Instantiate (pathPrefab, pathSpawnLocations [x].position, pathSpawnLocations [x].rotation);
+//					pathPlaced = true;
+//				}
+//			}
+			newPath = (GameObject)Instantiate(pathPrefab, pathSpawnLocations[0].position, pathSpawnLocations[0].rotation);
+			pathPlaced = true;
         }
     }
 }
