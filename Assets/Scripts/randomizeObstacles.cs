@@ -21,10 +21,10 @@ public class randomizeObstacles : MonoBehaviour {
 		while (delayCounter >= 0) {
 			delayCounter -= Time.deltaTime;
 		}
-
 		obstacle = (GameObject)Instantiate(GetRandomObstacle(), gameObject.transform.position, gameObject.transform.rotation);
 		obstacle.transform.parent = gameObject.transform.parent.parent.parent;
 		objectPlaced = true;
+		gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -40,7 +40,8 @@ public class randomizeObstacles : MonoBehaviour {
 	}
 	public GameObject GetRandomObstacle()
 	{
-		int x = Random.Range(0, numOfObstacles);
+		Random rand = new Random ();
+		Debug.Log (x + "rand");
 		if (x == 0)
 			return Resources.Load ("Obstacles/Bonfire") as GameObject;
 		else if (x == 1) {
