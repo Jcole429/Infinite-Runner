@@ -40,8 +40,7 @@ public class randomizeObstacles : MonoBehaviour {
 	}
 	public GameObject GetRandomObstacle()
 	{
-		Random rand = new Random ();
-		Debug.Log (x + "rand");
+        int x = Random.Range(0, numOfObstacles);
 		if (x == 0)
 			return Resources.Load ("Obstacles/Bonfire") as GameObject;
 		else if (x == 1) {
