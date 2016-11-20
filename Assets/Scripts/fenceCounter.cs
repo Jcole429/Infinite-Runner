@@ -16,6 +16,6 @@ public class fenceCounter : MonoBehaviour {
 	void Update () {
 		fences = GameObject.FindGameObjectsWithTag ("Fence");
 		numOfFences = fences.Length;
-		Debug.Log (numOfFences);
+		Debug.Log ("Number of fences " + numOfFences);
 	}
 }

@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ActivateChildren.cs" />
      <Compile Include="Assets\Campfire Pack\Script\SwitchView.cs" />
      <Compile Include="Assets\Scripts\PathSpawner.cs" />
      <Compile Include="Assets\Scripts\fenceCounter.cs" />

@@ -15,6 +15,8 @@ public class randomizeObstacles : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.LogError ("New Obstacle created");
+
 		fenceCounter = GameObject.Find ("FenceCounter");
 
 		delayCounter = (Random.value + Random.value)/2;
@@ -24,7 +26,7 @@ public class randomizeObstacles : MonoBehaviour {
 		obstacle = (GameObject)Instantiate(GetRandomObstacle(), gameObject.transform.position, gameObject.transform.rotation);
 		obstacle.transform.parent = gameObject.transform.parent.parent.parent;
 		objectPlaced = true;
-		gameObject.SetActive (false);
+		//gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -40,7 +42,12 @@ public class randomizeObstacles : MonoBehaviour {
 	}
 	public GameObject GetRandomObstacle()
 	{
+<<<<<<< Updated upstream
         int x = Random.Range(0, numOfObstacles);
+=======
+		int x = Random.Range (0, 4);
+		Debug.LogError ("Random obstacle " + x);
+>>>>>>> Stashed changes
 		if (x == 0)
 			return Resources.Load ("Obstacles/Bonfire") as GameObject;
 		else if (x == 1) {
