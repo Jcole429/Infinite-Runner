@@ -65,10 +65,11 @@
   <ItemGroup>
     <Compile Include="Assets\Campfire Pack\Script\SwitchView.cs" />
     <Compile Include="Assets\Scripts\PathSpawner.cs" />
-    <Compile Include="Assets\Scripts\fenceCounter.cs" />
     <Compile Include="Assets\Scripts\mainMenuScript.cs" />
     <Compile Include="Assets\Scripts\moveCharacter.cs" />
+    <Compile Include="Assets\Scripts\pathCounter.cs" />
     <Compile Include="Assets\Scripts\pauseManager.cs" />
+    <Compile Include="Assets\Scripts\powerUpMovement.cs" />
     <Compile Include="Assets\Scripts\powerUpSpawner.cs" />
     <Compile Include="Assets\Scripts\randomizeFloorPanels.cs" />
     <Compile Include="Assets\Scripts\randomizeObstacles.cs" />

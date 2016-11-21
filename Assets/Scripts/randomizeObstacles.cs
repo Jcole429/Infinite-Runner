@@ -3,58 +3,54 @@ using System.Collections;
 
 public class randomizeObstacles : MonoBehaviour {
 
-	GameObject fenceCounter;
-	public int numOfFences;
+    GameObject pathCounter;
+    public int numOfPaths;
+
 
 	GameObject obstacle;
+    GameObject pathObstacles;
 
 	int numOfObstacles = 4;
-	bool objectPlaced = false;
+	bool objectsPlaced = false;
 	float timeTilDestroy = 11f;
-	float delayCounter;
+
+    int fenceCount = 0;
+
 
 	// Use this for initialization
-	void Start () {
-		Debug.LogError ("New Obstacle created");
+	public void Start () {
+        pathCounter = GameObject.Find("PathCounter");
+        numOfPaths = pathCounter.GetComponent<pathCounter>().numOfPaths;
+        pathObstacles = new GameObject("Path" + numOfPaths + " Obstacles");
+        foreach (Transform row in gameObject.transform)
+        {
+            fenceCount = 0;
+            foreach (Transform spawnPoint in row)
+            {
+                obstacle = (GameObject)Instantiate(GetRandomObstacle(), spawnPoint.position, spawnPoint.transform.rotation, pathObstacles.transform);
+            }
+        }
 
-		fenceCounter = GameObject.Find ("FenceCounter");
-
-		delayCounter = (Random.value + Random.value)/2;
-		while (delayCounter >= 0) {
-			delayCounter -= Time.deltaTime;
-		}
-		obstacle = (GameObject)Instantiate(GetRandomObstacle(), gameObject.transform.position, gameObject.transform.rotation);
-		obstacle.transform.parent = gameObject.transform.parent.parent.parent;
-		objectPlaced = true;
-		//gameObject.SetActive (false);
+		objectsPlaced = true;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		numOfFences = fenceCounter.GetComponent<fenceCounter> ().numOfFences;
+	public void Update () {
 
-		if (objectPlaced) {
-			timeTilDestroy -= Time.deltaTime;
-			if (timeTilDestroy < 0) {
-				Destroy (obstacle);
-			}
-		}
-	}
+    }
 	public GameObject GetRandomObstacle()
 	{
-<<<<<<< Updated upstream
         int x = Random.Range(0, numOfObstacles);
-=======
-		int x = Random.Range (0, 4);
-		Debug.LogError ("Random obstacle " + x);
->>>>>>> Stashed changes
-		if (x == 0)
-			return Resources.Load ("Obstacles/Bonfire") as GameObject;
-		else if (x == 1) {
-			if (numOfFences < 3)
-				return Resources.Load ("Obstacles/Fence") as GameObject;
-			else
-				return Resources.Load ("Obstacles/EmptyObstacle") as GameObject;
+
+        if (x == 0)
+            return Resources.Load("Obstacles/Bonfire") as GameObject;
+        else if (x == 1) {
+            if (fenceCount < 2){
+                fenceCount++;
+                return Resources.Load("Obstacles/Fence") as GameObject;
+            }
+            else
+                return GetRandomObstacle();
 		}
 		else if (x == 2)
 			return Resources.Load("Obstacles/Rock1") as GameObject;
