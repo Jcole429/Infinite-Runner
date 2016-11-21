@@ -14,23 +14,15 @@ public class moveCharacter : MonoBehaviour {
 
     int currentLane = 2;
 
-    //private CharacterController controller;
-    ////private Animator anim;
-    //private Animation anim;
-    //private Vector3 moveDirection = Vector3.zero;
-    //private Vector3 sidewaysMovementDistance = Vector3.right * 2f;
-    //private Vector3 locationAfterChangingLane;
-
-    //public float sideWaysSpeed = 5.0f;
-    //public float jumpSpeed = 8.0f;
-    //public float speed = 6.0f;
-    //public float gravity = 5f;
-    //public float jumpHeight = 4.0f;
-
+	bool isRunning = true;
     bool isJumping = false;
+	bool isRising = false;
     bool isChangingLane = false;
-    float runSpeed = 15f;
+    float runSpeed = 5f;
     float jumpSpeed = 10f;
+	float changeLaneSpeed = 10f;
+	float jumpHeight = 3f;
+	float jumpPause = 1f;
 
     bool moveLeft = false;
     bool moveRight = false;
@@ -40,73 +32,88 @@ public class moveCharacter : MonoBehaviour {
     void Start () {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animation>();
+		anim["jump"].speed = 3;
         lane1 = new Vector3(-2f, transform.position.y, transform.position.z);
         lane2 = new Vector3(0f, transform.position.y, transform.position.z);
         lane3 = new Vector3(2f, transform.position.y, transform.position.z);
+		jumpLocation = new Vector3(transform.position.x, jumpHeight, transform.position.z);
+		jumpLandLocation = new Vector3 (transform.position.x, .18f, transform.position.z);
 
         transform.position = lane2;
-
-        //controller = GetComponent<CharacterController>();
-        //anim = GetComponent<Animation>();
-        //moveDirection.z = speed;
-        //moveDirection.y = -gravity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        jumpLocation = new Vector3(transform.position.x, 3f, transform.position.z);
-        anim.Play("run");
-        //detectJump();
-        //detectMoveLeftOrRight();
-        if (Input.GetKeyDown("left"))
+		controller.Move (Vector3.forward * Time.deltaTime * runSpeed);
+		lane1.z = transform.position.z; 
+		lane2.z = transform.position.z; 
+		lane3.z = transform.position.z; 
+		jumpLocation.z = transform.position.z; jumpLocation.x = transform.position.x;
+		jumpLandLocation.z = transform.position.z; jumpLandLocation.x = transform.position.x;
+		if(isRunning)
+			anim.Play("run");
+		if (Input.GetKeyDown("left") && !isJumping && !isChangingLane)
         {
             moveLeft = true;
             moveRight = false;
+			isChangingLane = true;
         }
-        if (Input.GetKeyDown("right"))
+		if (Input.GetKeyDown("right") && !isJumping && !isChangingLane)
         {
             moveRight = true;
             moveLeft = false;
+			isChangingLane = true;
         }
-        if (Input.GetKeyDown("space"))
+		if (Input.GetKeyDown("space") && !isJumping && !moveLeft && !moveRight)
         {
             isJumping = true;
+			isRising = true;
+			isRunning = false;
         }
         if (isJumping)
         {
-            jumpLandLocation = transform.position;
-            if (transform.position != jumpLocation)
+			anim.Play ("jump");
+			if (isRising)
             {
-                transform.position = Vector3.MoveTowards(transform.position, (jumpLocation), jumpSpeed * Time.deltaTime);
+				transform.position = Vector3.MoveTowards(transform.position, jumpLocation, jumpSpeed * Time.deltaTime);
+				if (transform.position.y >= jumpLocation.y) {
+					isRising = false;
+				}
             }
-            if(transform.position == jumpLocation)
+			if(!isRising)
             {
-                transform.position = Vector3.MoveTowards(transform.position, jumpLandLocation, jumpSpeed * Time.deltaTime);
-            }
-            if(transform.position == jumpLandLocation)
-            {
-                isJumping = false;
+				transform.position = Vector3.MoveTowards(transform.position, jumpLandLocation, jumpSpeed * Time.deltaTime);
+				if (transform.position.y <= jumpLandLocation.y) {
+					isJumping = false;
+					isRunning = true;
+				}
             }
         }
         if (moveLeft)
         {
+			if (currentLane == 1) {
+				moveLeft = false;
+				isChangingLane = false;
+			}
             if (currentLane == 2)
             {
-                transform.position = Vector3.MoveTowards(transform.position, lane1, runSpeed * Time.deltaTime);
+				transform.position = Vector3.MoveTowards(transform.position, lane1, changeLaneSpeed * Time.deltaTime);
                 if (transform.position == lane1)
                 {
                     currentLane = 1;
                     moveLeft = false;
+					isChangingLane = false;
                 }
             }
             if(currentLane == 3)
             {
-                transform.position = Vector3.MoveTowards(transform.position, lane2, runSpeed * Time.deltaTime);
+				transform.position = Vector3.MoveTowards(transform.position, lane2, changeLaneSpeed * Time.deltaTime);
                 if (transform.position == lane2)
                 {
                     currentLane = 2;
                     moveLeft = false;
+					isChangingLane = false;
                 }
             }
         }
@@ -114,42 +121,28 @@ public class moveCharacter : MonoBehaviour {
         {
             if (currentLane == 1)
             {
-                transform.position = Vector3.MoveTowards(transform.position, lane2, runSpeed * Time.deltaTime);
+				transform.position = Vector3.MoveTowards(transform.position, lane2, changeLaneSpeed * Time.deltaTime);
                 if (transform.position == lane2)
                 {
                     currentLane = 2;
                     moveRight = false;
+					isChangingLane = false;
                 }
             }
             if (currentLane == 2)
             {
-                transform.position = Vector3.MoveTowards(transform.position, lane3, runSpeed * Time.deltaTime);
+				transform.position = Vector3.MoveTowards(transform.position, lane3, changeLaneSpeed * Time.deltaTime);
                 if(transform.position == lane3)
                 {
                     currentLane = 3;
                     moveRight = false;
+					isChangingLane = false;
                 }
             }
+			if (currentLane == 3) {
+				moveLeft = false;
+				isChangingLane = false;
+			}
         }
-
-        //controller.Move(moveDirection * Time.deltaTime); //moves the player
-
-        //if (!isJumping)
-        //    anim.Play("run");
-    }
-
-    private void detectJump(){
-        //if (/*controller.isGrounded*/ !isJumping && Input.GetKeyDown("space") && isChangingLane == false)
-        //{
-        //    isJumping = true;
-        //    moveDirection.y = jumpSpeed;
-        //    anim.Play("jump");
-        //}
-        //else if (controller.transform.position.y >= jumpHeight)
-        //{
-        //    moveDirection.y = -gravity;
-        //}
-        //else if (controller.isGrounded && isJumping == true)
-        //    isJumping = false;
     }
 }
