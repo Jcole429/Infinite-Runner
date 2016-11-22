@@ -17,6 +17,7 @@ public class mainMenuScript : MonoBehaviour {
 		SceneManager.LoadScene ("StraightPathsLevel");
 	}
 	public void AdventurerButtonClick(){
+		Destroy(GameObject.Find("Directional Light1"));
 		SceneManager.LoadScene ("RotatedPathsLevel");
 	}
 	public void QuitButtonClick(){

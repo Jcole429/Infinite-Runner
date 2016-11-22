@@ -19,10 +19,13 @@ public class moveCharacter : MonoBehaviour {
 	bool isRising = false;
     bool isChangingLane = false;
     float runSpeed = 5f;
-    float jumpSpeed = 10f;
+    float jumpSpeed = 7f;
 	float changeLaneSpeed = 10f;
-	float jumpHeight = 3f;
-	float jumpPause = 1f;
+	float jumpHeight = 2f;
+	float jumpPause = .4f;
+	float timeLeftInJumpPause = 0f;
+	//float runPause = 0.5f;
+	//float timeLeftInRunPause = 0f;
 
     bool moveLeft = false;
     bool moveRight = false;
@@ -32,7 +35,7 @@ public class moveCharacter : MonoBehaviour {
     void Start () {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animation>();
-		anim["jump"].speed = 3;
+		anim["jump"].speed = 1.2f;
         lane1 = new Vector3(-2f, transform.position.y, transform.position.z);
         lane2 = new Vector3(0f, transform.position.y, transform.position.z);
         lane3 = new Vector3(2f, transform.position.y, transform.position.z);
@@ -70,6 +73,9 @@ public class moveCharacter : MonoBehaviour {
             isJumping = true;
 			isRising = true;
 			isRunning = false;
+			timeLeftInJumpPause = jumpPause;
+			//timeLeftInRunPause = runPause;
+
         }
         if (isJumping)
         {
@@ -78,7 +84,12 @@ public class moveCharacter : MonoBehaviour {
             {
 				transform.position = Vector3.MoveTowards(transform.position, jumpLocation, jumpSpeed * Time.deltaTime);
 				if (transform.position.y >= jumpLocation.y) {
-					isRising = false;
+					timeLeftInJumpPause -= Time.deltaTime;
+					if(timeLeftInJumpPause < 0)
+					{
+						isRising = false;
+					}
+					//isRising = false;
 				}
             }
 			if(!isRising)
@@ -86,6 +97,13 @@ public class moveCharacter : MonoBehaviour {
 				transform.position = Vector3.MoveTowards(transform.position, jumpLandLocation, jumpSpeed * Time.deltaTime);
 				if (transform.position.y <= jumpLandLocation.y) {
 					isJumping = false;
+//					timeLeftInRunPause -= Time.deltaTime;
+//					if(timeLeftInRunPause < 0)
+//					{
+//						isJumping = false;
+//						isRunning = true;
+//						Debug.Log ("isRunning = true");
+//					}
 					isRunning = true;
 				}
             }

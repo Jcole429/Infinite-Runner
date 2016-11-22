@@ -1,14 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/moveCharacter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/characterDie.cs">
     <Files>
-      <File FileName="Assets/Scripts/moveCharacter.cs" Line="80" Column="50" />
-      <File FileName="Assets/Scripts/powerUpSpawner.cs" Line="26" Column="25" />
-      <File FileName="Assets/Scripts/PathSpawner.cs" Line="24" Column="27" />
-      <File FileName="Assets/Scripts/randomizeObstacles.cs" Line="14" Column="25" />
+      <File FileName="Assets/Scripts/characterDie.cs" Line="34" Column="51" />
+      <File FileName="Assets/Scripts/moveCharacter.cs" Line="80" Column="23" />
+      <File FileName="Assets/Scripts/powerUpSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PathSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/randomizeObstacles.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/mainMenuScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/randomizeFloorPanels.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/pathCounter.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/dontDestroyOnLoad.cs" Line="8" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
