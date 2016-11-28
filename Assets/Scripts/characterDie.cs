@@ -28,7 +28,6 @@ public class characterDie : MonoBehaviour {
 			loadMenu = true;
 		}
 		if (loadMenu) {
-			Debug.Log ("Load Menu entered");
 			loadMenuDelay -= Time.deltaTime;
 			if (loadMenuDelay < 0) {
 				Destroy (GameObject.Find("Directional Light"));
