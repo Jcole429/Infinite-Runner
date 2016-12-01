@@ -46,7 +46,7 @@ public class moveCharacter : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 		controller.Move (Vector3.forward * Time.deltaTime * runSpeed);
 		lane1.z = transform.position.z; 

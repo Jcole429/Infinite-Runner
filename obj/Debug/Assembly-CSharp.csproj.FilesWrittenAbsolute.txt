@@ -15,3 +15,5 @@
 /Users/Jcole/Desktop/Advanced Game Programming/Infinite Runner/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/Jcole/Desktop/Advanced Game Programming/Infinite Runner/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/Jcole/Desktop/Advanced Game Programming/Infinite Runner/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/Jcole/Desktop/Advanced Game Programming/Infinite Runner/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/Jcole/Desktop/Advanced Game Programming/Infinite Runner/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb

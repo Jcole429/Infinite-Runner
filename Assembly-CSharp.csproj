@@ -54,10 +54,13 @@
      <Compile Include="Assets\Scripts\moveCharacter.cs" />
      <Compile Include="Assets\Scripts\pathCounter.cs" />
      <Compile Include="Assets\Scripts\pauseManager.cs" />
+     <Compile Include="Assets\Scripts\powerUpCollector.cs" />
      <Compile Include="Assets\Scripts\powerUpMovement.cs" />
      <Compile Include="Assets\Scripts\powerUpSpawner.cs" />
      <Compile Include="Assets\Scripts\randomizeFloorPanels.cs" />
      <Compile Include="Assets\Scripts\randomizeObstacles.cs" />
+     <Compile Include="Assets\Scripts\scoreUI.cs" />
+     <Compile Include="Assets\Scripts\timeUI.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
@@ -71,6 +74,10 @@
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{4CB89A7F-46EA-93B8-9DA9-D74A470FF926}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
