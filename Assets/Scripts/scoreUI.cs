@@ -18,7 +18,7 @@ public class scoreUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		scoreCount = (int)Time.time + (diamondsCollected * diamondMultiplier);
+		scoreCount = (int)Time.timeSinceLevelLoad + (diamondsCollected * diamondMultiplier);
 		score.GetComponent<Text> ().text = "Score: " + scoreCount;
 	}
 }

@@ -24,7 +24,6 @@ public class powerUpCollector : MonoBehaviour {
 
 	public void OnTriggerEnter(Collider col){
 		if (col.tag == "Player") {
-			Debug.LogError (sUI.gameObject.name);
 			sUI.GetComponent<scoreUI>().diamondsCollected += 1;
 			Destroy (gameObject);
 		}

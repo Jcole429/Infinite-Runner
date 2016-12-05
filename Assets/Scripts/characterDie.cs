@@ -7,6 +7,8 @@ public class characterDie : MonoBehaviour {
 	CharacterController controller;
 	Animation anim;
 
+	AudioSource deathSoundPlayer;
+
 	bool isDead = false;
 	bool loadMenu = false;
 	float loadMenuDelay = 2f;
@@ -17,6 +19,7 @@ public class characterDie : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		anim = GetComponent<Animation>();
 		anim ["death"].wrapMode = WrapMode.Once;
+		deathSoundPlayer = gameObject.GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +27,7 @@ public class characterDie : MonoBehaviour {
 		if (isDead) {
 			gameObject.GetComponent<moveCharacter> ().enabled = false;
 			anim.Play ("death");
+			deathSoundPlayer.Play ();
 			isDead = false;
 			loadMenu = true;
 		}

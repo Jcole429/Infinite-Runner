@@ -14,6 +14,6 @@ public class timeUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timeText.GetComponent<Text> ().text = "Time: " + (int)Time.time;
+		timeText.GetComponent<Text> ().text = "Time: " + (int)Time.timeSinceLevelLoad;
 	}
 }
