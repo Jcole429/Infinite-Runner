@@ -40,23 +40,21 @@ public class randomizeObstacles : MonoBehaviour {
     }
 	public GameObject GetRandomObstacle()
 	{
-        int x = Random.Range(0, numOfObstacles);
+        int x = Random.Range(0, numOfObstacles + 2);
 
-        if (x == 0)
-            return Resources.Load("Obstacles/Bonfire") as GameObject;
-        else if (x == 1) {
-            if (fenceCount < 2){
-                fenceCount++;
-                return Resources.Load("Obstacles/Fence") as GameObject;
-            }
-            else
-                return GetRandomObstacle();
-		}
-		else if (x == 2)
-			return Resources.Load("Obstacles/Rock1") as GameObject;
+		if (x == 0)
+			return Resources.Load ("Obstacles/Bonfire") as GameObject;
+		else if (x == 1) {
+			if (fenceCount < 2) {
+				fenceCount++;
+				return Resources.Load ("Obstacles/Fence") as GameObject;
+			} else
+				return GetRandomObstacle ();
+		} else if (x == 2)
+			return Resources.Load ("Obstacles/Rock1") as GameObject;
 		else if (x == 3)
-			return Resources.Load("Obstacles/Rock2") as GameObject;
+			return Resources.Load ("Obstacles/Rock2") as GameObject;
 		else
-			return Resources.Load("Obstacles/EmptyObstacle") as GameObject;
+			return Resources.Load ("Obstacles/EmptyObstacle") as GameObject;
 	}
 }
