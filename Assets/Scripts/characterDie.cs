@@ -16,6 +16,7 @@ public class characterDie : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 1;
 		controller = GetComponent<CharacterController>();
 		anim = GetComponent<Animation>();
 		anim ["death"].wrapMode = WrapMode.Once;

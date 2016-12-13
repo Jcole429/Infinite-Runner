@@ -6,14 +6,17 @@ public class pauseManager : MonoBehaviour
 
 	bool paused = false;
 
-	void Update()
+	public void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.Escape))
 			paused = togglePause();
-		if(paused)
-		{
-			gameObject.GetComponent<Canvas>().enabled = true;
-		}else gameObject.GetComponent<Canvas>().enabled = false;
+		if (paused) {
+			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (0).gameObject.SetActive (true);
+			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (1).gameObject.SetActive (true);
+		} else {
+			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (0).gameObject.SetActive (false);
+			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (1).gameObject.SetActive (false);
+		}
 	}
 
 	bool togglePause()
