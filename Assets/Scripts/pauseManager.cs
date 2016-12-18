@@ -13,9 +13,11 @@ public class pauseManager : MonoBehaviour
 		if (paused) {
 			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (0).gameObject.SetActive (true);
 			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (1).gameObject.SetActive (true);
+			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (2).gameObject.SetActive (true);
 		} else {
 			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (0).gameObject.SetActive (false);
 			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (1).gameObject.SetActive (false);
+			GameObject.Find ("PauseButtons").GetComponent<Transform> ().GetChild (2).gameObject.SetActive (false);
 		}
 	}
 
